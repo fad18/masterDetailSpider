@@ -1,0 +1,118 @@
+<!--详细地列举我所遇到的问题，以及别人给我的提示。-->
+<!--在此，我感谢王慧老师对我的启发和帮助。下面的报告中，我还会具体地提到-->
+<!--他们在各个方法对我的帮助。-->
+<!--我的程序里中凡是引用到其他程序或文档之处，-->
+<!--例如教材、课堂笔记、网上的源代码以及其他参考书上的代码段,-->
+<!--我都已经在程序的注释里很清楚地注明了引用的出处。-->
+
+<!--我从未没抄袭过别人的程序，也没有盗用别人的程序，-->
+<!--不管是修改式的抄袭还是原封不动的抄袭。-->
+<!--我编写这个程序，从来没有想过要去破坏或妨碍其他计算机系统的正常运转。-->
+<!--<何玮>-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../static/css/list.css">
+		<title>考研信息查询</title>
+	</head>
+	<body>
+		<nav>
+			<div>
+				<b id="try">考研信息查询</b>
+			</div>
+		</nav>
+
+		<div id="content">
+			<h><b>硕士专业目录查询</b></h>
+			
+			<form id="form" action="/getList/" method="POST" onsubmit="return check()">
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<select class="tc" name="ssdm" id="ssdm">
+									<option>--选择省市--</option>
+									{% for item in ss %}
+										<option value={{item.dm}}>({{item.dm}}){{item.mc}}</option>
+									{% endfor %}
+								</select>
+							</td>
+							<td>
+								<input type="text" name="dwmc"  id="dwmc" class="tc" placeholder="输入招生单位名称">
+							</td>
+							<td>
+								<select class="tc" id="ml" name="mldm" onchange="getXk()">
+									<option>--选择门类--</option>
+									{% for item in ml %}
+										<option value={{item.dm}}>({{item.dm}}){{item.mc}}</option>
+									{% endfor %}
+								</select>
+							</td>
+							<td>
+								<select class="tc" id="xk" name="yjxkdm" onchange="getZy()">
+									<option>--选择学科--</option>
+									{% for item in xk %}
+										<option value={{item.dm}}>({{item.dm}}){{item.mc}}</option>
+									{% endfor %}
+								</select>
+							</td>
+							<td>
+								<select class="tc" id="zy" name="zymc">
+									<option>--选择专业--</option>
+									{% for item in zy %}
+										<option value={{item.dm}}>({{item.dm}}){{item.mc}}</option>
+									{% endfor %}
+								</select>
+							</td>
+							<td>
+								<select class="tc" id="xxfs" name="xxfs">
+									<option value="">--选择学习方式--</option>
+									<option value="1">全日制</option>
+									<option value="2">非全日制</option>
+								</select>
+							</td>
+							<td>
+								<button class="btn">查询</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" name="xxlb" value="YJSY" class="cbox">研究生院
+							</td>
+							<td>
+								<input type="checkbox" name="xxlb" value="ZHX" class="cbox">自划线院校
+							</td>
+							<td>
+								<input type="checkbox" name="xxlb" value="BS" class="cbox">博士点
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+
+		<div id="list">
+			<table id="lt">
+				<tr>
+					<th class="td">招生单位</th>
+					<th class="td">所在地</th>
+				</tr>
+				{% for item in list %}
+					<tr>
+						<td class="td"><a href={{item.href}} target="_blank">{{item.mc}}</a></td>
+						<td class="td">{{item.addr}}</td>
+					</tr>
+				{% endfor %}
+				<tr>
+					<td class="td">{{tip}}</td>
+					<td class="td">{{tip}}</td>
+				</tr>
+			</table>
+		</div>
+		
+	</body>
+	<script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="../static/js/index.js"></script>
+</html>

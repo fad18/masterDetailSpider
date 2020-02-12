@@ -1,0 +1,59 @@
+<!--详细地列举我所遇到的问题，以及别人给我的提示。-->
+<!--在此，我感谢王慧老师对我的启发和帮助。下面的报告中，我还会具体地提到-->
+<!--他们在各个方法对我的帮助。-->
+<!--我的程序里中凡是引用到其他程序或文档之处，-->
+<!--例如教材、课堂笔记、网上的源代码以及其他参考书上的代码段,-->
+<!--我都已经在程序的注释里很清楚地注明了引用的出处。-->
+
+<!--我从未没抄袭过别人的程序，也没有盗用别人的程序，-->
+<!--不管是修改式的抄袭还是原封不动的抄袭。-->
+<!--我编写这个程序，从来没有想过要去破坏或妨碍其他计算机系统的正常运转。-->
+<!--<何玮>-->
+
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="UTF-8">
+                <link rel="stylesheet" type="text/css" href="../static/css/info.css">
+                <title>考研信息查询</title>
+        </head>
+        <body>
+                <nav>
+                        <div>
+                                <b id="try">考研信息查询</b>
+                        </div>
+                </nav>
+
+                <p><b>{{dwmc}}</b></p>
+                
+                <div id="table">
+                        <table>
+                                <tr>
+                                        <th class="td">考试方式</th>
+                                        <th class="td">院系所</th>
+                                        <th class="td">专业</th>
+                                        <th class="td">研究方向</th>
+                                        <th class="td">招生人数</th>
+                                        <th class="td">政治</th>
+                                        <th class="td">外语</th>
+                                        <th class="td">业务课一</th>
+                                        <th class="td">业务课二</th>
+                                </tr>
+                                {% for item in more %}
+                                        <tr>
+                                                <td class="td">{{item.ksfs}}</td>
+                                                <td class="td">{{item.yxs}}</td>
+                                                <td class="td">{{item.zy}}</td>
+                                                <td class="td">{{item.yjfx}}</td>
+                                                <td class="td">{{item.rs}}</td>
+                                                <td class="td">{{item.zz}}</td>
+                                                <td class="td">{{item.wy}}</td>
+                                                <td class="td">{{item.ss}}</td>
+                                                <td class="td">{{item.zyk}}</td>
+                                        </tr>
+                                {% endfor %}
+                        </table>
+                </div>
+        </body>
+        <script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
+</html>
